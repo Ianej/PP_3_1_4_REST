@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<h1><span th:utext="${hello}"></span></h1>
+<table>
+    <tr>
+        <button onclick="history.back()">Назад</button>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выход"/>
+        </form>
+    </tr>
+</table>
+<p><a th:href="@{user}">Пользователь</a></p>
+<P><a th:href="@{admin/rolesList}">Список ролей</a></P>
+<p><a th:href="@{admin/usersList}">Список пользователей</a></p>
+
+</body>
+</html>

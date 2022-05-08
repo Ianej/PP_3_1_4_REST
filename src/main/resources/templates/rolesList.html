@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roles</title>
+</head>
+<body>
+<h1>Список ролей</h1>
+<div>
+    <p></p>
+    <table>
+        <tr>
+            <button onclick="history.back()">Назад</button>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Выход"/>
+            </form>
+        </tr>
+    </table>
+    <p></p>
+    <form th:action="@{newRole}" th:object="${role}" method="post">
+        <label>Новая роль</label>
+        <input type="text" th:field="*{roleName}" placeholder="Введите название роли">
+        <input type="submit" value="Создать">
+    </form>
+    <p></p>
+</div>
+<div>
+    <table border="1">
+        <tr>
+            <th>№</th>
+            <th>Роль</th>
+            <th>Действия</th>
+        </tr>
+        <tr th:each="role :${roles}">
+            <td th:text="${role.getId()}"></td>
+            <td th:text="${role.getRoleName()}"></td>
+            <td>
+                <a th:href="@{role/delete(id=${role.getId()})}">Удалить</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

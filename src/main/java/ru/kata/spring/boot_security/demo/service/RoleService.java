@@ -1,0 +1,14 @@
+package ru.kata.spring.boot_security.demo.service;
+
+import ru.kata.spring.boot_security.demo.model.Role;
+import ru.kata.spring.boot_security.demo.model.User;
+
+import java.util.List;
+
+public interface RoleService {
+    List<Role> listRoles();
+    void addRole(Role role);
+    void removeRole(long id);
+    Role getRole(long id);
+    List<User> getUsersByRole(long id);
+}
