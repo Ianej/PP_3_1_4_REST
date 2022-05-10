@@ -17,6 +17,10 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String name;
     private String lastName;
+
+
+
+    private String email;
     private String password;
     private int age;
     @ManyToMany(cascade = {
@@ -76,10 +80,16 @@ public class User implements UserDetails {
     public void setAge(int age) {
         this.age = age;
     }
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
     @Override
     public String toString() {
-        return "id-> " + id + " name: " + name + " pass: " + password + " lastName: " + lastName + " age: " + age;
+        return "\u001B[32m" + "id-> " + id + " name: " + name + " lastName: " + lastName + " age: " + age + "email: " + email + " pass: " +  password + " roles: " + roles + "\u001B[0m";
     }
 
     @Override
