@@ -11,11 +11,16 @@ import ru.kata.spring.boot_security.demo.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserDao userDao;
+    private final UserDao userDao;
+
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     @Transactional(readOnly = true)
     @Override
     public List<User> listUsers() {
@@ -23,16 +28,17 @@ public class UserServiceImpl implements UserService {
     }
     @Transactional
     @Override
-    public void addUser(User user) {
+    public User addUser(User user) {
         System.out.println(user);
-        userDao.save(user);
+
         System.out.println("findUserByName(user.getName()) -> " + findUserByName(user.getName()));
+        return userDao.save(user);
     }
     @Transactional
     @Override
-    public void updateUser(long id, User user) {
+    public User updateUser(long id, User user) {
         user.setId(id);
-        userDao.save(user);
+        return userDao.save(user);
     }
     @Transactional
     @Override
@@ -55,6 +61,12 @@ public class UserServiceImpl implements UserService {
     public List<Role> getRolesByUser(long id) {
         return getUser(id).getRoles();
     }
+    @Transactional
+    @Override
+    public Optional<User> findById(long id) {
+        return userDao.findById(id);
+    }
+
     @Transactional
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

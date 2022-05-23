@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,19 +19,17 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String name;
     private String lastName;
-
-
-
     private String email;
     private String password;
     private int age;
     @ManyToMany(cascade = {
-            CascadeType.PERSIST,
             CascadeType.MERGE})
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    //@JsonBackReference
+    @JsonManagedReference
     private List<Role> roles = new ArrayList<>();
     public User() {}
     public void addRole(Role role) {
@@ -89,7 +89,7 @@ public class User implements UserDetails {
     }
     @Override
     public String toString() {
-        return "\u001B[32m" + "id-> " + id + " name: " + name + " lastName: " + lastName + " age: " + age + "email: " + email + " pass: " +  password + " roles: " + roles + "\u001B[0m";
+        return "\u001B[32m" + "id-> " + id + " name: " + name + " lastName: " + lastName + " age: " + age + " email: " + email + " pass: " +  password + " roles: " + roles + "\u001B[0m";
     }
 
     @Override
