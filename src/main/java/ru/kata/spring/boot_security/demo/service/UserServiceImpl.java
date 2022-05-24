@@ -29,9 +29,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public User addUser(User user) {
-        System.out.println(user);
-
-        System.out.println("findUserByName(user.getName()) -> " + findUserByName(user.getName()));
+        System.out.println("\u001B[37mADD: \u001B[0m" + user);
         return userDao.save(user);
     }
     @Transactional

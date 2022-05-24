@@ -33,13 +33,21 @@ public class DBConfig {
             roleService.addRole(adminRole);
             roleService.addRole(userRole);
 
-            admin.setName("admin");
+            admin.setName("zzzz");
+            admin.setLastName("zzz");
+            admin.setAge(100);
+            admin.setPassword("zzzz");
+            admin.setEmail("zzz@ZZZ.ru");
+            admin.setRoles(adminRoles);
+            userService.addUser(admin);
+
+            /*admin.setName("admin");
             admin.setLastName("adminov");
             admin.setAge(100);
             admin.setPassword("admin");
             admin.setEmail("admin@mail.ru");
             admin.setRoles(adminRoles);
-            userService.addUser(admin);
+            userService.addUser(admin);*/
 
             user.setName("user");
             user.setLastName("userov");

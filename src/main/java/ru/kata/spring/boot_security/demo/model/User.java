@@ -24,7 +24,7 @@ public class User implements UserDetails {
     private int age;
     @ManyToMany(cascade = {
             CascadeType.MERGE})
-    @JoinTable(name = "user_role",
+    @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )

@@ -24,12 +24,14 @@ public class RestUserController {
         if (userService.findUserByName(user.getName())!=null) {
             throw new Exception("Имя существует, введите пожалуйста другое имя");
         }
+        System.out.println("\u001B[33mPOST: \u001B[0m" + user);
         User user1 = userService.addUser(user);
         return  user1;
     }
 
     @RequestMapping(value = "/admin/usersList")
     public List<User> getUsersList() {
+        System.out.println("\u001B[33mGET: \u001B[0m" + "usersList");
         return userService.listUsers();
     }
 
@@ -39,15 +41,16 @@ public class RestUserController {
         if (user!=null && user.getId() != id) {
             throw new Exception("Имя уже занято, введите пожалуйста другое имя");
         }
+        System.out.println("\u001B[33mEDIT: \u001B[0m" + id + " " + userEdit);
         return userService.updateUser(id, userEdit);
     }
 
     @RequestMapping(value = "/admin/delete")
     public Map<String, String> deleteUser(long id) throws Exception {
-
         User user = userService.findById(id).orElseThrow(() -> new Exception(
                 "Нельзя удалить несуществующего пользователя с id=" + id));
         userService.removeUser(id);
+        System.out.println("\u001B[33mDELETE: \u001B[0m" + id);
         return Collections.singletonMap("id", "" + id);
     }
 

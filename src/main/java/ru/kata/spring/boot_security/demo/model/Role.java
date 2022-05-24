@@ -17,7 +17,6 @@ public class Role implements GrantedAuthority {
     private long id;
     private String roleName;
     @ManyToMany(cascade = {
-            CascadeType.PERSIST,
             CascadeType.MERGE},
             mappedBy = "roles")
     //@JsonManagedReference
